@@ -10,62 +10,85 @@ section {
   position: relative;
 }
 
-/* ===== HERO ===== */
+/* ===== TYPOGRAPHY HERO — NO PHOTO ===== */
 .hero {
   position: relative;
-  height: 100vh;
-  min-height: 650px;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   overflow: hidden;
+  background: var(--black);
 }
 
-.hero-bg {
+/* Subtle gold lattice/jaali pattern */
+.hero-pattern {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
-  transform: scale(1.05);
+  opacity: 0.07;
+  background-image:
+    repeating-linear-gradient(45deg, var(--gold) 0px, var(--gold) 1px, transparent 1px, transparent 46px),
+    repeating-linear-gradient(-45deg, var(--gold) 0px, var(--gold) 1px, transparent 1px, transparent 46px);
 }
 
-.hero-overlay {
+/* Soft glowing aura behind the text for depth */
+.hero-glow {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(11,11,13,0.55) 0%, rgba(11,11,13,0.85) 70%, var(--black) 100%);
+  top: 50%;
+  left: 50%;
+  width: 700px;
+  height: 700px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(217,182,91,0.14) 0%, transparent 65%);
+  pointer-events: none;
 }
 
 .hero-content {
   position: relative;
-  z-index: 2;
-  max-width: 780px;
+  z-index: 3;
+  max-width: 720px;
   padding: 0 24px;
 }
 
+.hero-monogram {
+  font-family: var(--font-script);
+  font-size: 44px;
+  color: var(--gold);
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+
 .hero-title {
-  font-size: clamp(38px, 6vw, 68px);
-  margin: 18px 0;
+  font-size: clamp(36px, 6vw, 66px);
+  margin: 16px 0 10px;
   line-height: 1.15;
+}
+
+.hero-flourish {
+  color: var(--gold);
+  font-size: 22px;
+  opacity: 0.7;
+  margin: 14px 0;
+  transform: rotate(180deg);
+  display: inline-block;
 }
 
 .hero-sub {
   color: var(--ivory-dim);
-  font-size: 17px;
-  max-width: 560px;
-  margin: 0 auto 36px;
+  font-size: 16px;
+  max-width: 520px;
+  margin: 10px auto 34px;
 }
 
 .hero-actions {
   display: flex;
-  gap: 18px;
-  justify-content: center;
+  gap: 16px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
-.hero-actions.center { justify-content: center; }
-
-/* ===== SPARKLE / TWINKLE LAYER ===== */
+/* ===== SPARKLE / TWINKLE LAYER (minimal) ===== */
 .sparkle-field {
   position: absolute;
   inset: 0;
@@ -79,48 +102,45 @@ section {
   background: var(--gold-light);
   border-radius: 50%;
   opacity: 0;
-  box-shadow: 0 0 6px 1.5px var(--gold);
+  box-shadow: 0 0 4px 1px var(--gold);
   animation: twinkle ease-in-out infinite;
 }
 
 @keyframes twinkle {
   0%, 100% { opacity: 0; transform: scale(0.4); }
-  50% { opacity: 1; transform: scale(1.4); }
+  50% { opacity: 0.55; transform: scale(1.2); }
 }
 
-/* ===== ABOUT TEASER ===== */
-.about-teaser { padding: var(--section-pad); max-width: 1200px; margin: 0 auto; }
+/* ===== QUICK GLANCE STRIP ===== */
+.glance-strip {
+  background: var(--charcoal);
+  border-bottom: 1px solid rgba(217,182,91,0.14);
+  padding: 26px 24px;
+}
 
-.about-grid {
+.glance-inner {
+  max-width: 1000px;
+  margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
   gap: 40px;
+  flex-wrap: wrap;
+}
+
+.glance-item {
+  display: flex;
   align-items: center;
+  gap: 10px;
 }
 
-.about-image {
-  position: relative;
-  flex: 1 1 400px;
-}
-.about-image img {
-  width: 100%;
-  height: 480px;
-  object-fit: cover;
-}
-.about-image-frame {
-  position: absolute;
-  top: 18px; left: 18px;
-  right: -18px; bottom: -18px;
-  border: 1px solid var(--gold);
-  z-index: -1;
-}
+.glance-icon { font-size: 22px; }
 
-.about-copy { flex: 1 1 400px; }
-
-.about-copy p {
+.glance-label {
+  font-family: var(--font-nav);
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   color: var(--ivory-dim);
-  margin: 20px 0 28px;
-  font-size: 15px;
 }
 
 /* ===== HANGING GALLERY (3D) ===== */
@@ -205,7 +225,6 @@ section {
   z-index: 4;
 }
 
-/* Real 3D fan — each card angled differently in 3D space */
 .pol-1 { transform: rotateY(18deg) rotateZ(-4deg) translateZ(-40px); }
 .pol-2 { transform: rotateY(7deg) rotateZ(3deg) translateZ(10px); margin-top: 20px; }
 .pol-3 { transform: rotateY(-7deg) rotateZ(-3deg) translateZ(10px); margin-top: 20px; }
@@ -257,7 +276,7 @@ section {
   box-shadow: 0 10px 30px rgba(217,182,91,0.1);
 }
 
-/* ===== BRIDAL BANNER — black & gold, NOT maroon/pink ===== */
+/* ===== BRIDAL BANNER ===== */
 .bridal-banner {
   position: relative;
   min-height: 480px;
@@ -306,19 +325,57 @@ section {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
-  .about-image img { height: 320px; }
+  .hero-glow { width: 450px; height: 450px; }
+  .hero-monogram { font-size: 34px; }
+
   .clothesline-3d { perspective: 800px; }
   .polaroid { width: 150px; }
   .polaroid img { height: 160px; }
   .pol-1, .pol-2, .pol-3, .pol-4 { margin-top: 0; }
 }
+
+/* Force 2-column grid for polaroids + services on small phones */
+@media (max-width: 600px) {
+  .clothesline-3d {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    justify-items: center;
+    perspective: none;
+  }
+  .polaroid,
+  .pol-1, .pol-2, .pol-3, .pol-4 {
+    width: 100%;
+    max-width: 160px;
+    transform: none !important;
+    margin-top: 0 !important;
+  }
+  .polaroid:hover {
+    transform: translateY(-6px) scale(1.03) !important;
+  }
+  .polaroid img { height: 150px; }
+  .clothesline-wire { display: none; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .service-card { flex: none; }
+  .service-card img { height: 130px; }
+  .service-card-body { padding: 14px; }
+  .service-card-body h3 { font-size: 16px; }
+  .service-card-body p { font-size: 12px; }
+
+  .glance-inner { gap: 20px; justify-content: space-around; }
+  .glance-label { font-size: 10px; }
+}
+
 @media (max-width: 480px) {
-  .section, .hero { padding-left: 16px; padding-right: 16px; }
+  .section { padding-left: 20px; padding-right: 20px; }
   .btn { width: 100%; justify-content: center; }
-  .hero-actions, .hero-actions.center { flex-direction: column; align-items: stretch; }
-  .hero-actions .btn, .hero-actions.center .btn { width: 100%; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { width: 100%; }
   h1 { font-size: clamp(28px, 8vw, 40px) !important; }
   .section-title { font-size: clamp(26px, 7vw, 36px) !important; }
-  .polaroid { width: 130px; }
-  .polaroid img { height: 140px; }
 }
