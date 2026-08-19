@@ -1,0 +1,195 @@
+<!-- ===== PAGE HEADER ===== -->
+<section class="page-header" style="background-image: url('/assets/images/booking-hero-bg.jpg');">
+  <div class="page-header-overlay"></div>
+  <div class="sparkle-field">
+    <span class="sparkle" *ngFor="let s of sparkles" [style.top]="s.top" [style.left]="s.left" [style.width]="s.size" [style.height]="s.size" [style.animationDelay]="s.delay" [style.animationDuration]="s.duration"></span>
+  </div>
+  <div class="page-header-content">
+    <span class="eyebrow">Reserve Your Slot</span>
+    <h1>Book Your <span class="gold-text">Appointment</span></h1>
+    <p>Fill in your details below — we'll confirm your slot over WhatsApp within minutes.</p>
+  </div>
+</section>
+
+<!-- ===== BOOKING FORM ===== -->
+<section class="section booking-section">
+  <div class="booking-grid">
+
+    <!-- LEFT: Info panel -->
+    <div class="booking-info">
+      <span class="eyebrow">How It Works</span>
+      <h2 class="section-title">Simple, <span class="gold-text">Fast</span> Booking</h2>
+      <hr class="gold-divider">
+
+      <div class="booking-step">
+        <div class="step-num">1</div>
+        <div>
+          <h4>Fill the Form</h4>
+          <p>Tell us the service, date, and time you'd prefer.</p>
+        </div>
+      </div>
+      <div class="booking-step">
+        <div class="step-num">2</div>
+        <div>
+          <h4>Sent to WhatsApp</h4>
+          <p>Your request opens directly in WhatsApp, ready to send.</p>
+        </div>
+      </div>
+      <div class="booking-step">
+        <div class="step-num">3</div>
+        <div>
+          <h4>We Confirm</h4>
+          <p>Our team confirms your slot personally, usually within minutes.</p>
+        </div>
+      </div>
+
+      <div class="booking-direct-call">
+        <p>Prefer to talk directly?</p>
+        <a href="tel:+91XXXXXXXXXX" class="btn btn-outline">Call the Salon</a>
+      </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="booking-form-wrap">
+      <form (ngSubmit)="onBook()" #bookingForm="ngForm" *ngIf="!submitted">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" name="name" [(ngModel)]="booking.name" required placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" name="phone" [(ngModel)]="booking.phone" required placeholder="10-digit number">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Service *</label>
+          <select name="service" [(ngModel)]="booking.service" required>
+            <option value="" disabled selected>Select a service</option>
+            <optgroup *ngFor="let cat of serviceCategories" [label]="cat.name">
+              <option *ngFor="let s of cat.services" [value]="s">{{ s }}</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Preferred Date *</label>
+            <input type="date" name="date" [(ngModel)]="booking.date" [min]="minDate" required>
+          </div>
+          <div class="form-group">
+            <label>Preferred Time *</label>
+            <select name="time" [(ngModel)]="booking.time" required>
+              <option value="" disabled selected>Select time</option>
+              <option *ngFor="let t of timeSlots" [value]="t">{{ t }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Additional Notes</label>
+          <textarea name="notes" rows="3" [(ngModel)]="booking.notes" placeholder="Any specific requirements or requests..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="!bookingForm.valid">
+          Confirm & Send via WhatsApp
+        </button>
+      </form>
+
+      <!-- Success state -->
+      <div class="booking-success" *ngIf="submitted">
+        <div class="success-icon">✓</div>
+        <h3>Redirecting You to WhatsApp...</h3>
+        <p>If WhatsApp didn't open automatically, tap the button below.</p>
+        <a [href]="lastWhatsappUrl" target="_blank" class="btn btn-primary">Open WhatsApp</a>
+        <button class="btn btn-outline" (click)="resetForm()">Book Another Appointment</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== VISIT US: INFO CARDS ===== -->
+<section class="section info-section">
+  <span class="eyebrow center">Get In Touch</span>
+  <h2 class="section-title center">Visit <span class="gold-text">Eleven 11</span></h2>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-icon-badge"><span>📍</span></div>
+      <h3>Address</h3>
+      <p>123 Anna Salai, Chennai, Tamil Nadu 600002</p>
+    </div>
+    <div class="info-card">
+      <div class="info-icon-badge"><span>📞</span></div>
+      <h3>Phone</h3>
+      <p><a href="tel:+91XXXXXXXXXX">+91 XXXXX XXXXX</a></p>
+    </div>
+    <div class="info-card">
+      <div class="info-icon-badge"><span>✉️</span></div>
+      <h3>Email</h3>
+      <p><a href="mailto:hello@eleven11salon.com">hello&#64;eleven11salon.com</a></p>
+    </div>
+    <div class="info-card">
+      <div class="info-icon-badge"><span>🕐</span></div>
+      <h3>Hours</h3>
+      <p>Mon - Sun: 10:00 AM - 8:30 PM</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAP ===== -->
+<section class="section map-section">
+  <div class="map-wrap">
+    <iframe
+      [src]="mapUrl"
+      width="100%"
+      height="100%"
+      style="border:0;"
+      allowfullscreen="true"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
+<!-- ===== TRUST STRIP ===== -->
+<section class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <span class="trust-number gold-text">4.9★</span>
+      <span class="trust-label">Google Rating</span>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <span class="trust-number gold-text">3000+</span>
+      <span class="trust-label">Happy Clients</span>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <span class="trust-number gold-text">8+</span>
+      <span class="trust-label">Years of Trust</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOCIAL STRIP ===== -->
+<section class="social-strip">
+  <div class="social-inner">
+    <span class="eyebrow center">Follow Along</span>
+    <h2 class="section-title center">Stay <span class="gold-text">Connected</span></h2>
+
+    <div class="social-links">
+      <a href="https://instagram.com/eleven11salon" target="_blank" rel="noopener" class="social-link">
+        <span class="social-icon">📷</span> Instagram
+      </a>
+      <a href="https://g.page/r/YOUR_GOOGLE_PAGE_ID/review" target="_blank" rel="noopener" class="social-link">
+        <span class="social-icon">⭐</span> Google Reviews
+      </a>
+      <a [href]="'https://wa.me/91XXXXXXXXXX'" target="_blank" rel="noopener" class="social-link">
+        <span class="social-icon">💬</span> WhatsApp
+      </a>
+    </div>
+  </div>
+</section>

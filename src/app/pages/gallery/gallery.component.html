@@ -1,0 +1,59 @@
+<!-- ===== PAGE HEADER ===== -->
+<section class="page-header" style="background-image: url('/assets/images/gallery-hero-bg.jpg');">
+  <div class="page-header-overlay"></div>
+  <div class="sparkle-field">
+    <span class="sparkle" *ngFor="let s of sparkles" [style.top]="s.top" [style.left]="s.left" [style.width]="s.size" [style.height]="s.size" [style.animationDelay]="s.delay" [style.animationDuration]="s.duration"></span>
+  </div>
+  <div class="page-header-content">
+    <span class="eyebrow">Our Work</span>
+    <h1>The <span class="gold-text">Gallery</span></h1>
+    <p>A closer look at the transformations we've created — hair, makeup, and bridal artistry.</p>
+  </div>
+</section>
+
+<!-- ===== FILTER + GRID ===== -->
+<section class="section gallery-section">
+  <div class="tab-bar">
+    <button
+      *ngFor="let cat of categories"
+      class="tab-btn"
+      [class.active]="activeFilter === cat"
+      (click)="setFilter(cat)">
+      {{ cat }}
+    </button>
+  </div>
+
+  <div class="gallery-grid">
+    <div
+      class="gallery-item"
+      *ngFor="let item of filteredItems; let i = index"
+      (click)="openLightbox(i)">
+      <img [src]="item.img" [alt]="item.caption">
+      <div class="gallery-overlay">
+        <span class="gallery-caption">{{ item.caption }}</span>
+        <span class="gallery-zoom">+</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" *ngIf="lightboxOpen" (click)="closeLightbox()">
+  <button class="lightbox-close" (click)="closeLightbox()">&times;</button>
+
+  <button class="lightbox-nav lightbox-prev" (click)="prevImage($event)">&#8249;</button>
+
+  <div class="lightbox-content" (click)="$event.stopPropagation()">
+    <img [src]="filteredItems[currentIndex].img" [alt]="filteredItems[currentIndex].caption">
+    <p class="lightbox-caption">{{ filteredItems[currentIndex].caption }}</p>
+  </div>
+
+  <button class="lightbox-nav lightbox-next" (click)="nextImage($event)">&#8250;</button>
+</div>
+
+<!-- ===== CTA ===== -->
+<section class="section gallery-cta">
+  <h2 class="section-title center">Ready to Create Your <span class="gold-text">Own Look?</span></h2>
+  <p class="section-subtitle center">Book an appointment and let's add your transformation to the gallery.</p>
+  <a routerLink="/booking" class="btn btn-primary">Book Appointment</a>
+</section>

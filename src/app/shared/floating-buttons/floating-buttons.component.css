@@ -1,0 +1,80 @@
+.charm-mount {
+  position: fixed;
+  right: 30px;
+  bottom: 24px;
+  z-index: 999;
+  perspective: 700px;
+}
+
+.charm-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  transform-origin: top center;
+  animation: pendulum 5s ease-in-out infinite;
+}
+.charm-line:hover {
+  animation-play-state: paused;
+}
+
+
+
+/* The coin itself */
+.charm-coin {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  cursor: pointer;
+  box-shadow: 0 12px 26px rgba(0,0,0,0.55);
+}
+
+.charm-coin:hover {
+  transform: rotateY(180deg);
+}
+
+.coin-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  border: 2px solid rgba(255,255,255,0.25);
+}
+
+.coin-front {
+  color: var(--black);
+}
+
+.coin-back {
+  transform: rotateY(180deg);
+  background: var(--charcoal);
+  border: 2px solid var(--gold);
+  color: var(--gold-light);
+  font-family: var(--font-nav);
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.4;
+  text-transform: uppercase;
+  padding: 4px;
+}
+
+.whatsapp-coin .coin-front { background: #25D366; }
+.call-coin .coin-front { background: var(--gold-gradient); }
+
+@keyframes pendulum {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+
+@media (max-width: 480px) {
+  .charm-mount { right: 18px; bottom: 18px; }
+  .charm-coin { width: 48px; height: 48px; }
+  .coin-back { font-size: 8px; }
+}

@@ -1,0 +1,105 @@
+<!-- ===== PAGE HEADER ===== -->
+<section class="page-header" style="background-image: url('images/about-hero-bg.jpeg');">
+  <div class="page-header-overlay"></div>
+  <div class="sparkle-field">
+    <span class="sparkle" *ngFor="let s of sparkles" [style.top]="s.top" [style.left]="s.left" [style.width]="s.size" [style.height]="s.size" [style.animationDelay]="s.delay" [style.animationDuration]="s.duration"></span>
+  </div>
+  <div class="page-header-content">
+    <span class="eyebrow">Since Day One</span>
+    <h1>About <span class="gold-text">Eleven 11</span></h1>
+    <p>A studio built on craft, care, and a quiet obsession with getting every detail right.</p>
+  </div>
+</section>
+
+<!-- ===== OUR STORY ===== -->
+<section class="section story-section">
+  <div class="story-grid">
+    <div class="story-image">
+      <img src="images/about-preview.jpeg" alt="Eleven 11 Studio">
+      <div class="story-image-frame"></div>
+    </div>
+    <div class="story-copy">
+      <span class="eyebrow">Our Story</span>
+      <h2 class="section-title">Born From a Love of <span class="gold-text">Craft</span></h2>
+      <hr class="gold-divider">
+      <p>
+        Eleven 11 began with a simple idea — beauty services should feel personal, not transactional. What started as a small styling chair has grown into a full salon and bridal studio, but the philosophy hasn't changed: listen first, then create.
+      </p>
+      <p>
+        Today, our team of stylists, makeup artists, and bridal specialists work together under one roof, so every client — whether it's a quick trim or a full wedding transformation — gets the same level of attention.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PHILOSOPHY / VALUES ===== -->
+<section class="section values-section">
+  <span class="eyebrow center">What Drives Us</span>
+  <h2 class="section-title center">Our <span class="gold-text">Philosophy</span></h2>
+
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-icon">✦</div>
+      <h3>Precision</h3>
+      <p>Every cut, color, and stroke is deliberate — nothing is rushed.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">✦</div>
+      <h3>Personal Care</h3>
+      <p>We get to know you, not just your hair or skin type.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">✦</div>
+      <h3>Premium Products</h3>
+      <p>Only trusted, high-quality brands touch our clients.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">✦</div>
+      <h3>Bridal Expertise</h3>
+      <p>Dedicated bridal specialists for your most important day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS STRIP ===== -->
+<section class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat">
+      <h3 class="gold-text">8+</h3>
+      <p>Years of Experience</p>
+    </div>
+    <div class="stat">
+      <h3 class="gold-text">500+</h3>
+      <p>Brides Styled</p>
+    </div>
+    <div class="stat">
+      <h3 class="gold-text">3000+</h3>
+      <p>Happy Clients</p>
+    </div>
+    <div class="stat">
+      <h3 class="gold-text">12+</h3>
+      <p>Expert Artists</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MEET THE TEAM ===== -->
+<section class="section team-section">
+  <span class="eyebrow center">The Person Behind It</span>
+  <h2 class="section-title center">Meet Our <span class="gold-text">Artist</span></h2>
+
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-img"><img src="images/team-1.jpeg" alt="Stylist"></div>
+      <h3>Bhuvi</h3>
+      <p>Lead Hair Stylist & MakeUp Artist</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="section about-cta">
+  <h2 class="section-title center">Let's Create Your <span class="gold-text">Look</span></h2>
+  <p class="section-subtitle center">Book a consultation and meet the team in person.</p>
+  <a routerLink="/booking" class="btn btn-primary">Book Appointment</a>
+</section>

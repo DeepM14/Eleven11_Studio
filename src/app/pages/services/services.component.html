@@ -1,0 +1,46 @@
+<!-- ===== PAGE HEADER ===== -->
+<section class="page-header" style="background-image: url('images/services-hero-bg.jpeg');">
+  <div class="page-header-overlay"></div>
+  <div class="sparkle-field">
+    <span class="sparkle" *ngFor="let s of sparkles" [style.top]="s.top" [style.left]="s.left" [style.width]="s.size" [style.height]="s.size" [style.animationDelay]="s.delay" [style.animationDuration]="s.duration"></span>
+  </div>
+  <div class="page-header-content">
+    <span class="eyebrow">What We Offer</span>
+    <h1>Our <span class="gold-text">Services</span></h1>
+    <p>From everyday styling to complete transformations — every service delivered with premium care.</p>
+  </div>
+</section>
+
+<!-- ===== TABBED SERVICES ===== -->
+<section class="section services-tabbed">
+  <div class="tab-bar">
+    <button
+      *ngFor="let cat of categories; let i = index"
+      class="tab-btn"
+      [class.active]="activeIndex === i"
+      (click)="setActive(i)">
+      {{ cat.name }}
+    </button>
+  </div>
+
+  <ng-container *ngFor="let cat of categories; let i = index">
+    <div class="services-grid" *ngIf="activeIndex === i">
+      <div class="service-card-v2" *ngFor="let s of cat.services">
+        <div class="card-img">
+          <img [src]="s.img" [alt]="s.name">
+        </div>
+        <div class="card-body">
+          <h3>{{ s.name }}</h3>
+          <p>{{ s.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="section services-cta">
+  <h2 class="section-title center">Not Sure What You <span class="gold-text">Need?</span></h2>
+  <p class="section-subtitle center">Book a free consultation and we'll recommend the right service for you.</p>
+  <a routerLink="/booking" class="btn btn-primary">Book Appointment</a>
+</section>

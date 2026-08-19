@@ -1,0 +1,26 @@
+<header class="navbar" [class.scrolled]="isScrolled">
+  <div class="nav-top-line"></div>
+
+  <div class="nav-inner">
+    <a routerLink="/" class="logo-block" (click)="closeMenu()">
+      <span class="logo">Eleven <span class="logo-script">11</span></span>
+      <span class="logo-tagline">SALON &nbsp;·&nbsp; BRIDAL STUDIO</span>
+    </a>
+
+    <nav class="nav-links" [class.open]="menuOpen">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">Home</a>
+      <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About</a>
+      <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">Services</a>
+      <a routerLink="/bridal" routerLinkActive="active" (click)="closeMenu()">Bridal</a>
+      <a routerLink="/gallery" routerLinkActive="active" (click)="closeMenu()">Gallery</a>
+    </nav>
+
+    <a routerLink="/booking" class="nav-cta" (click)="closeMenu()">
+      <span>Book Appointment</span>
+    </a>
+
+    <button class="hamburger" (click)="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>

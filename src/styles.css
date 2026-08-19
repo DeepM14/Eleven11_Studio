@@ -1,1 +1,132 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===== ELEVEN 11 — GLOBAL THEME ===== */
+:root {
+  --black: #0B0B0D;
+  --charcoal: #17161A;
+  --charcoal-light: #201f24;
+  --gold-light: #E9CE83;
+  --gold: #D9B65B;
+  --gold-deep: #A8792D;
+  --ivory: #F3EEE3;
+  --ivory-dim: #cfc9ba;
+  --maroon: #5C1A2B;
+
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Poppins', sans-serif;
+  --font-script: 'Alex Brush', cursive;
+  --font-nav: 'Marcellus', serif;
+
+  --gold-gradient: linear-gradient(135deg, var(--gold-light), var(--gold-deep));
+  --section-pad: 64px 24px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--ivory);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ivory);
+  letter-spacing: 0.5px;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* ---- Reusable utility classes (used across every page) ---- */
+
+.gold-text {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section {
+  padding: var(--section-pad);
+  max-width: 1200px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(217, 182, 91, 0.14);
+}
+
+.section:first-of-type {
+  border-top: none;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: var(--gold);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.section-title {
+  font-size: clamp(32px, 5vw, 52px);
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  color: var(--ivory-dim);
+  max-width: 620px;
+  font-size: 16px;
+  margin-bottom: 32px;
+}
+
+.gold-divider {
+  width: 80px;
+  height: 2px;
+  background: var(--gold-gradient);
+  margin: 20px 0;
+  border: none;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  border: 1px solid var(--gold);
+}
+
+.btn-primary {
+  background: var(--gold-gradient);
+  color: var(--black);
+  border: none;
+}
+.btn-primary:hover {
+  filter: brightness(1.12);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--gold-light);
+}
+.btn-outline:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+@media (max-width: 768px) {
+  .section { padding: 48px 20px; }
+}
