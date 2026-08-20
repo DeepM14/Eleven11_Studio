@@ -17,7 +17,7 @@ section { display: block; width: 100%; position: relative; }
 .page-header-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, rgba(92,26,43,0.55), rgba(11,11,13,0.9) 60%);
+  background: var(--black);
 }
 .sparkle-field {
   position: absolute;
@@ -139,6 +139,16 @@ section { display: block; width: 100%; position: relative; }
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
   .tab-btn { padding: 10px 18px; font-size: 12px; }
+    .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .service-card-v2 { flex: none; }
+  .card-img { height: 110px; }
+  .card-body { padding: 12px; }
+  .card-body h3 { font-size: 14px; }
+  .card-body p { font-size: 11px; }
 }
 
 @media (max-width: 480px) {

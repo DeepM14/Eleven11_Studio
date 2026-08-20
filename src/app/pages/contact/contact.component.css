@@ -17,7 +17,7 @@ section { display: block; width: 100%; position: relative; }
 .page-header-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, rgba(92,26,43,0.55), rgba(11,11,13,0.9) 60%);
+  background: var(--black);
 }
 .sparkle-field {
   position: absolute;

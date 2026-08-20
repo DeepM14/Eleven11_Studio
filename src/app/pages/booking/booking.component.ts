@@ -28,7 +28,7 @@ export class BookingComponent implements OnInit {
   mapUrl: SafeResourceUrl;
 
   // >>> REPLACE WITH YOUR REAL SALON WHATSAPP NUMBER (country code, no + or spaces) <
-  private readonly SALON_WHATSAPP_NUMBER = '91XXXXXXXXXX';
+  private readonly SALON_WHATSAPP_NUMBER = '919500644702';
 
   booking = {
     name: '',
@@ -38,6 +38,11 @@ export class BookingComponent implements OnInit {
     time: '',
     notes: ''
   };
+    constructor(private sanitizer: DomSanitizer) {
+    // Replace with your own "Embed a map" src from Google Maps (Share -> Embed a map)
+    const rawUrl = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d80.2707!3d13.0827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA0JzU3LjciTiA4MMKwMTYnMTQuNSJF!5e0!3m2!1sen!2sin!4v1234567890';
+    this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(rawUrl);
+  }
 
   serviceCategories: ServiceCategory[] = [
     { name: 'Hair Studio', services: ['Haircut & Styling', 'Hair Coloring & Highlights', 'Keratin & Smoothening'] },
@@ -52,12 +57,6 @@ export class BookingComponent implements OnInit {
     '6:00 PM', '7:00 PM', '8:00 PM'
   ];
 
-  constructor(private sanitizer: DomSanitizer) {
-    // Replace with your own "Embed a map" src from Google Maps (Share -> Embed a map)
-    const rawUrl = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d80.2707!3d13.0827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA0JzU3LjciTiA4MMKwMTYnMTQuNSJF!5e0!3m2!1sen!2sin!4v1234567890';
-    this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(rawUrl);
-  }
-
   ngOnInit() {
     this.sparkles = Array.from({ length: 35 }, () => ({
       top: Math.random() * 100 + '%',
@@ -67,6 +66,7 @@ export class BookingComponent implements OnInit {
       duration: (Math.random() * 2.5 + 2).toFixed(1) + 's'
     }));
 
+    // Prevent selecting past dates in the date picker
     const today = new Date();
     this.minDate = today.toISOString().split('T')[0];
   }

@@ -17,7 +17,7 @@ section { display: block; width: 100%; position: relative; }
 .page-header-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, rgba(92,26,43,0.55), rgba(11,11,13,0.9) 60%);
+  background: var(--black);
 }
 .sparkle-field {
   position: absolute;
@@ -385,6 +385,14 @@ section { display: block; width: 100%; position: relative; }
 @media (max-width: 900px) {
   .package-card.featured { transform: scale(1); }
   .package-card.featured:hover { transform: translateY(-8px); }
+    .included-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .included-card { flex: none; max-width: none; padding: 16px; }
+  .included-icon { font-size: 24px; }
+  .included-card h3 { font-size: 15px; }
 }
 
 @media (max-width: 700px) {

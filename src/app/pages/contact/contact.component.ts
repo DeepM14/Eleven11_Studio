@@ -44,7 +44,7 @@ export class ContactComponent implements OnInit {
 
   onSubmit() {
     const msg = `Hi Eleven 11! 👋%0A%0A*Name:* ${this.form.name}%0A*Phone:* ${this.form.phone}%0A*Email:* ${this.form.email || 'N/A'}%0A*Message:* ${this.form.message}`;
-    const whatsappUrl = `https://wa.me/91XXXXXXXXXX?text=${msg}`;
+    const whatsappUrl = `https://wa.me/919500644702?text=${msg}`;
     window.open(whatsappUrl, '_blank');
   }
 }
