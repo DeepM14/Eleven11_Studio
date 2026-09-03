@@ -1,0 +1,139 @@
+<div class="admin-section">
+  <h2 class="section-title">Manage <span class="gold-text">Bridal Page</span></h2>
+  <p class="section-subtitle">Edit bridal packages and lookbook photos.</p>
+
+  <div class="seed-banner" *ngIf="packages.length === 0 && lookbook.length === 0">
+    <p>Import your existing Bridal packages and lookbook photos so you can edit them here.</p>
+    <button class="btn btn-outline" (click)="seedBridalContent()" [disabled]="packageUploading">
+      {{ packageUploading ? 'Importing...' : 'Import Existing Bridal Content' }}
+    </button>
+  </div>
+
+  <!-- ===== PACKAGES ===== -->
+  <div class="admin-block-header">
+    <h3>Bridal Packages</h3>
+  </div>
+
+  <div class="admin-form-card">
+    <h3>{{ editingPackageId ? 'Edit Package' : 'Add Package' }}</h3>
+
+    <div class="form-group">
+      <label>Order (1, 2, or 3)</label>
+      <select [(ngModel)]="newPackage.position">
+        <option [value]="1">1</option>
+        <option [value]="2">2 (usually the featured one)</option>
+        <option [value]="3">3</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Package Name</label>
+      <input type="text" [(ngModel)]="newPackage.name" placeholder="e.g. Royal Bridal">
+    </div>
+
+    <div class="form-group">
+      <label>Tagline</label>
+      <input type="text" [(ngModel)]="newPackage.tag" placeholder="e.g. Our most complete bridal experience">
+    </div>
+
+    <div class="form-group">
+      <label>What's Included (one per line)</label>
+      <textarea rows="4" [(ngModel)]="newPackage.includesText" placeholder="Airbrush HD Makeup&#10;Premium Hair & Extensions&#10;Draping + Jewelry Styling"></textarea>
+    </div>
+
+    <div class="form-group form-checkbox">
+      <label>
+        <input type="checkbox" [(ngModel)]="newPackage.featured">
+        Mark as "Most Loved" (featured package)
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>Photo</label>
+      <input type="file" accept="image/*" (change)="onPackageFileSelected($event)">
+    </div>
+
+    <div class="upload-preview" *ngIf="packagePreviewUrl">
+      <img [src]="packagePreviewUrl" alt="Preview">
+    </div>
+    <div class="upload-preview" *ngIf="!packagePreviewUrl && newPackage.img">
+      <img [src]="newPackage.img" alt="Current photo">
+    </div>
+
+    <p class="upload-status" *ngIf="packageUploading">Saving...</p>
+    <p class="upload-error" *ngIf="packageErrorMsg">{{ packageErrorMsg }}</p>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" (click)="savePackage()" [disabled]="packageUploading">
+        {{ editingPackageId ? 'Update Package' : 'Add Package' }}
+      </button>
+      <button class="btn btn-outline" *ngIf="editingPackageId" (click)="cancelPackageEdit()">Cancel</button>
+    </div>
+  </div>
+
+  <div class="admin-table">
+    <div class="admin-row" *ngFor="let pkg of packages">
+      <img [src]="pkg.img" [alt]="pkg.name" class="admin-row-img">
+      <div class="admin-row-body">
+        <strong>{{ pkg.name }} <span *ngIf="pkg.featured" class="featured-tag-mini">Most Loved</span></strong>
+        <p>{{ pkg.tag }}</p>
+        <p class="admin-row-validity">{{ pkg.includes.length || 0 }} inclusions listed</p>
+      </div>
+      <div class="admin-row-actions">
+        <button class="btn-edit" (click)="editPackage(pkg)">Edit</button>
+        <button class="btn-delete" (click)="deletePackage(pkg.id)">Delete</button>
+      </div>
+    </div>
+    <p class="empty-msg" *ngIf="packages.length === 0">No packages yet — add up to 3 above.</p>
+  </div>
+
+  <!-- ===== LOOKBOOK ===== -->
+  <div class="admin-block-header">
+    <h3>Lookbook Photos</h3>
+  </div>
+
+  <div class="admin-form-card">
+    <h3>{{ editingLookId ? 'Edit Lookbook Photo' : 'Add Lookbook Photo' }}</h3>
+
+    <div class="form-group">
+      <label>Caption</label>
+      <input type="text" [(ngModel)]="newLook.caption" placeholder="e.g. Bridal Glow">
+    </div>
+
+    <div class="form-group">
+      <label>Photo {{ editingLookId ? '(leave empty to keep current photo)' : '' }}</label>
+      <input type="file" accept="image/*" (change)="onLookFileSelected($event)">
+    </div>
+
+    <div class="upload-preview" *ngIf="lookPreviewUrl">
+      <img [src]="lookPreviewUrl" alt="Preview">
+    </div>
+    <div class="upload-preview" *ngIf="!lookPreviewUrl && newLook.img">
+      <img [src]="newLook.img" alt="Current photo">
+    </div>
+
+    <p class="upload-status" *ngIf="lookUploading">Saving...</p>
+    <p class="upload-error" *ngIf="lookErrorMsg">{{ lookErrorMsg }}</p>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" (click)="saveLook()" [disabled]="lookUploading">
+        {{ editingLookId ? 'Update Photo' : (lookUploading ? 'Saving...' : 'Save Photo') }}
+      </button>
+      <button class="btn btn-outline" *ngIf="editingLookId" (click)="cancelLookEdit()">Cancel</button>
+    </div>
+  </div>
+
+  <div class="admin-photo-grid">
+    <div class="admin-photo-card" *ngFor="let look of lookbook">
+      <img [src]="look.img" [alt]="look.caption">
+      <div class="admin-photo-body">
+        <strong>{{ look.position }}. {{ look.caption }}</strong>
+        <div class="photo-card-actions">
+          <button class="btn-edit" (click)="editLook(look)">Edit</button>
+          <button class="btn-delete" (click)="deleteLook(look.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="empty-msg" *ngIf="lookbook.length === 0">No lookbook photos yet — add some above.</p>
+</div>

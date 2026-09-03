@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { FirebaseService } from '../../core/firebase.service';
 
 interface Sparkle {
   top: string;
@@ -9,6 +10,7 @@ interface Sparkle {
 }
 
 interface GalleryItem {
+  id?: string;
   img: string;
   caption: string;
   category: string;
@@ -22,28 +24,19 @@ interface GalleryItem {
 })
 export class GalleryComponent implements OnInit {
   sparkles: Sparkle[] = [];
+  loading = true;
 
   categories = ['All', 'Hair', 'Makeup', 'Bridal', 'Spa'];
   activeFilter = 'All';
 
-  allItems: GalleryItem[] = [
-    { img: 'images/gal-1.jpeg', caption: 'Balayage Highlights', category: 'Hair' },
-    { img: 'images/gal-2.jpeg', caption: 'Keratin Smoothening', category: 'Hair' },
-    { img: 'images/gal-3.jpeg', caption: 'Bridal Updo', category: 'Bridal' },
-    { img: 'images/gal-4.jpeg', caption: 'HD Party Makeup', category: 'Makeup' },
-    { img: 'images/gal-5.jpeg', caption: 'Airbrush Finish', category: 'Makeup' },
-    { img: 'images/gal-6.jpeg', caption: 'Royal Bridal Look', category: 'Bridal' },
-    { img: 'images/gal-7.jpeg', caption: 'Facial & Glow', category: 'Spa' },
-    { img: 'images/gal-9.jpeg', caption: 'Layered Haircut', category: 'Hair' },
-    { img: 'images/gal-10.jpeg', caption: 'Bridal Trial Session', category: 'Bridal' },
-    { img: 'images/gal-11.jpeg', caption: 'Evening Glam', category: 'Makeup' },
-    { img: 'images/gal-12.jpeg', caption: 'Hair Spa', category: 'Spa' }
-  ];
+  allItems: GalleryItem[] = [];
 
   lightboxOpen = false;
   currentIndex = 0;
 
-  ngOnInit() {
+  constructor(private firebaseService: FirebaseService) {}
+
+  async ngOnInit() {
     this.sparkles = Array.from({ length: 35 }, () => ({
       top: Math.random() * 100 + '%',
       left: Math.random() * 100 + '%',
@@ -51,11 +44,19 @@ export class GalleryComponent implements OnInit {
       delay: (Math.random() * 5).toFixed(1) + 's',
       duration: (Math.random() * 2.5 + 2).toFixed(1) + 's'
     }));
+
+    await this.loadItems();
+  }
+
+  async loadItems() {
+    this.loading = true;
+    this.allItems = await this.firebaseService.getAll('gallery') as GalleryItem[];
+    this.loading = false;
   }
 
   get filteredItems(): GalleryItem[] {
     if (this.activeFilter === 'All') return this.allItems;
-    return this.allItems.filter(item => item.category === this.activeFilter);
+    return this.allItems.filter(item => (item.category || '').trim().toLowerCase() === this.activeFilter.toLowerCase());
   }
 
   setFilter(cat: string) {

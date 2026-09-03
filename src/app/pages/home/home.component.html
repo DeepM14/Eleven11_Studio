@@ -24,25 +24,15 @@
   </div>
 </section>
 
-<!-- ===== QUICK GLANCE: WHAT WE OFFER ===== -->
-<section class="glance-strip">
-  <div class="glance-inner">
-    <div class="glance-item">
-      <span class="glance-icon">💇‍♀️</span>
-      <span class="glance-label">Hair Styling</span>
+<!-- ===== OFFERS BANNER ===== -->
+<section class="offers-banner">
+  <div class="offers-banner-inner">
+    <div class="offers-banner-text">
+      <span class="eyebrow">Limited Time</span>
+      <h3>Get <span class="gold-text">20% Off</span> Your First Visit</h3>
+      <p>Use code <strong class="gold-text">WELCOME20</strong> when booking</p>
     </div>
-    <div class="glance-item">
-      <span class="glance-icon">💄</span>
-      <span class="glance-label">Makeup Artistry</span>
-    </div>
-    <div class="glance-item">
-      <span class="glance-icon">👰</span>
-      <span class="glance-label">Bridal Packages</span>
-    </div>
-    <div class="glance-item">
-      <span class="glance-icon">💅</span>
-      <span class="glance-label">Spa & Nails</span>
-    </div>
+    <a routerLink="/offers" class="btn btn-outline">View All Offers</a>
   </div>
 </section>
 
@@ -59,27 +49,13 @@
     <div class="clothesline-wire"></div>
 
     <div class="clothesline-3d">
-      <div class="polaroid pol-1">
-        <div class="pin"></div>
-        <img src="images/hang-1.jpeg" alt="Bridal look 1">
-        <p class="polaroid-caption">Bridal Glow</p>
-      </div>
-      <div class="polaroid pol-2">
-        <div class="pin"></div>
-        <img src="images/hang-2.jpg" alt="Hair styling">
-        <p class="polaroid-caption">Hair Artistry</p>
-      </div>
-      <div class="polaroid pol-3">
-        <div class="pin"></div>
-        <img src="images/hang-3.jpeg" alt="Makeup art">
-        <p class="polaroid-caption">Makeup Magic</p>
-      </div>
-      <div class="polaroid pol-4">
-        <div class="pin"></div>
-        <img src="images/hang-4.jpeg" alt="Bridal look 2">
-        <p class="polaroid-caption">Wedding Day</p>
-      </div>
-    </div>
+  <div class="polaroid" [ngClass]="'pol-' + item.position" *ngFor="let item of homeGalleryItems">
+    <div class="pin"></div>
+    <img [src]="item.img" [alt]="item.caption">
+    <p class="polaroid-caption">{{ item.caption }}</p>
+  </div>
+</div>
+   
   </div>
 
   <div class="hanging-cta">
@@ -93,28 +69,14 @@
   <h2 class="section-title center">Signature <span class="gold-text">Services</span></h2>
 
   <div class="services-grid">
-    <div class="service-card">
-      <img src="images/service-hair.jpg" alt="Hair Styling">
-      <div class="service-card-body">
-        <h3>Hair Styling</h3>
-        <p>Cuts, coloring, keratin & premium hair therapies.</p>
-      </div>
-    </div>
-    <div class="service-card">
-      <img src="images/service-makeup.jpeg" alt="Makeup">
-      <div class="service-card-body">
-        <h3>Makeup Artistry</h3>
-        <p>HD, airbrush & occasion makeup by expert artists.</p>
-      </div>
-    </div>
-    <div class="service-card featured">
-      <img src="images/service-bridal.jpeg" alt="Bridal Packages">
-      <div class="service-card-body">
-        <h3>Bridal Packages</h3>
-        <p>Complete bridal transformation, curated end-to-end.</p>
-      </div>
+  <div class="service-card" [class.featured]="i === featuredServices.length - 1" *ngFor="let s of featuredServices; let i = index">
+    <img [src]="s.img" [alt]="s.name">
+    <div class="service-card-body">
+      <h3>{{ s.name }}</h3>
+      <p>{{ s.desc }}</p>
     </div>
   </div>
+</div>
 </section>
 
 <!-- ===== BRIDAL BANNER ===== -->

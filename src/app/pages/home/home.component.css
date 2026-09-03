@@ -1,14 +1,6 @@
 /* ===== GLOBAL SAFETY (prevents section collapse) ===== */
-:host {
-  display: block;
-  width: 100%;
-}
-
-section {
-  display: block;
-  width: 100%;
-  position: relative;
-}
+:host { display: block; width: 100%; }
+section { display: block; width: 100%; position: relative; }
 
 /* ===== TYPOGRAPHY HERO — NO PHOTO ===== */
 .hero {
@@ -22,7 +14,6 @@ section {
   background: var(--black);
 }
 
-/* Subtle gold lattice/jaali pattern */
 .hero-pattern {
   position: absolute;
   inset: 0;
@@ -32,7 +23,6 @@ section {
     repeating-linear-gradient(-45deg, var(--gold) 0px, var(--gold) 1px, transparent 1px, transparent 46px);
 }
 
-/* Soft glowing aura behind the text for depth */
 .hero-glow {
   position: absolute;
   top: 50%;
@@ -44,12 +34,7 @@ section {
   pointer-events: none;
 }
 
-.hero-content {
-  position: relative;
-  z-index: 3;
-  max-width: 720px;
-  padding: 0 24px;
-}
+.hero-content { position: relative; z-index: 3; max-width: 720px; padding: 0 24px; }
 
 .hero-monogram {
   font-family: var(--font-script);
@@ -59,11 +44,7 @@ section {
   margin-bottom: 8px;
 }
 
-.hero-title {
-  font-size: clamp(36px, 6vw, 66px);
-  margin: 16px 0 10px;
-  line-height: 1.15;
-}
+.hero-title { font-size: clamp(36px, 6vw, 66px); margin: 16px 0 10px; line-height: 1.15; }
 
 .hero-flourish {
   color: var(--gold);
@@ -74,28 +55,12 @@ section {
   display: inline-block;
 }
 
-.hero-sub {
-  color: var(--ivory-dim);
-  font-size: 16px;
-  max-width: 520px;
-  margin: 10px auto 34px;
-}
+.hero-sub { color: var(--ivory-dim); font-size: 16px; max-width: 520px; margin: 10px auto 34px; }
 
-.hero-actions {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 
-/* ===== SPARKLE / TWINKLE LAYER (minimal) ===== */
-.sparkle-field {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 1;
-}
+/* ===== SPARKLE / TWINKLE LAYER ===== */
+.sparkle-field { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
 
 .sparkle {
   position: absolute;
@@ -112,79 +77,35 @@ section {
 }
 
 /* ===== QUICK GLANCE STRIP ===== */
-.glance-strip {
-  background: var(--charcoal);
-  border-bottom: 1px solid rgba(217,182,91,0.14);
-  padding: 26px 24px;
-}
-
-.glance-inner {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.glance-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
+.glance-strip { background: var(--charcoal); border-bottom: 1px solid rgba(217,182,91,0.14); padding: 26px 24px; }
+.glance-inner { max-width: 1000px; margin: 0 auto; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+.glance-item { display: flex; align-items: center; gap: 10px; }
 .glance-icon { font-size: 22px; }
+.glance-label { font-family: var(--font-nav); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--ivory-dim); }
 
-.glance-label {
-  font-family: var(--font-nav);
-  font-size: 13px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--ivory-dim);
-}
+/* ===== OFFERS BANNER ===== */
+.offers-banner { background: var(--charcoal); border-bottom: 1px solid rgba(217,182,91,0.14); padding: 22px 24px; }
+.offers-banner-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.offers-banner-text h3 { font-size: 18px; margin: 4px 0; }
+.offers-banner-text p { color: var(--ivory-dim); font-size: 13px; }
 
 /* ===== HANGING GALLERY (3D) ===== */
-.hanging-section {
-  text-align: center;
-  padding: var(--section-pad);
-  max-width: 1200px;
-  margin: 0 auto;
-  overflow: visible;
-}
+.hanging-section { text-align: center; padding: var(--section-pad); max-width: 1200px; margin: 0 auto; overflow: visible; }
+.eyebrow.center, .section-title.center, .section-subtitle.center { text-align: center; margin-left: auto; margin-right: auto; }
 
-.eyebrow.center, .section-title.center, .section-subtitle.center {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.clothesline-wrap {
-  position: relative;
-  padding-top: 50px;
-  min-height: 420px;
-}
+.clothesline-wrap { position: relative; padding-top: 50px; min-height: 420px; }
 
 .clothesline-wire {
-  position: absolute;
-  top: 70px;
-  left: 5%;
-  right: 5%;
-  height: 1px;
+  position: absolute; top: 70px; left: 5%; right: 5%; height: 1px;
   background: linear-gradient(90deg, transparent, var(--gold) 15%, var(--gold) 85%, transparent);
   box-shadow: 0 1px 4px rgba(217,182,91,0.5);
   z-index: 2;
 }
 
 .clothesline-3d {
-  position: relative;
-  z-index: 3;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 28px;
-  flex-wrap: wrap;
-  padding-top: 28px;
-  perspective: 1400px;
+  position: relative; z-index: 3;
+  display: flex; justify-content: center; align-items: flex-start;
+  gap: 28px; flex-wrap: wrap; padding-top: 28px; perspective: 1400px;
 }
 
 .polaroid {
@@ -198,11 +119,7 @@ section {
   transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
 }
 
-.polaroid img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
+.polaroid img { width: 100%; height: 200px; object-fit: cover; }
 
 .polaroid-caption {
   font-family: var(--font-script);
@@ -213,12 +130,8 @@ section {
 }
 
 .pin {
-  position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 14px;
-  height: 14px;
+  position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+  width: 14px; height: 14px;
   background: var(--gold-gradient);
   border-radius: 50%;
   box-shadow: 0 2px 6px rgba(0,0,0,0.6);
@@ -256,74 +169,49 @@ section {
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.service-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-}
+.service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
 
+/* Single source of truth for fit/position — height changes per breakpoint below */
 .service-card img {
   width: 100%;
   height: 240px;
-  object-fit: cover;
+  object-fit: contain;
+  display: block;
+  background: var(--charcoal);
 }
 
 .service-card-body { padding: 24px; }
 .service-card-body h3 { font-size: 22px; margin-bottom: 8px; }
 .service-card-body p { color: var(--ivory-dim); font-size: 14px; }
 
-.service-card.featured {
-  border-color: var(--gold);
-  box-shadow: 0 10px 30px rgba(217,182,91,0.1);
-}
+.service-card.featured { border-color: var(--gold); box-shadow: 0 10px 30px rgba(217,182,91,0.1); }
 
 /* ===== BRIDAL BANNER ===== */
 .bridal-banner {
-  position: relative;
-  min-height: 480px;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin: 0;
-  overflow: hidden;
+  position: relative; min-height: 480px;
+  background-size: cover; background-position: center;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  margin: 0; overflow: hidden;
 }
 
 .bridal-banner-overlay {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background: linear-gradient(135deg, rgba(11,11,13,0.92), rgba(23,22,26,0.85));
   border-top: 1px solid rgba(217,182,91,0.3);
   border-bottom: 1px solid rgba(217,182,91,0.3);
 }
 
-.bridal-banner-content {
-  position: relative;
-  z-index: 2;
-  max-width: 600px;
-  padding: 0 24px;
-}
-
-.bridal-banner-content h2 {
-  font-size: clamp(30px, 4vw, 44px);
-  margin: 14px 0 16px;
-}
-
-.bridal-banner-content p {
-  color: var(--ivory-dim);
-  margin-bottom: 30px;
-}
+.bridal-banner-content { position: relative; z-index: 2; max-width: 600px; padding: 0 24px; }
+.bridal-banner-content h2 { font-size: clamp(30px, 4vw, 44px); margin: 14px 0 16px; }
+.bridal-banner-content p { color: var(--ivory-dim); margin-bottom: 30px; }
 
 /* ===== FINAL CTA ===== */
-.final-cta {
-  text-align: center;
-  padding: var(--section-pad);
-  max-width: 1200px;
-  margin: 0 auto;
-}
+.final-cta { text-align: center; padding: var(--section-pad); max-width: 1200px; margin: 0 auto; }
 
-/* ===== RESPONSIVE ===== */
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
 @media (max-width: 900px) {
   .hero-glow { width: 450px; height: 450px; }
   .hero-monogram { font-size: 34px; }
@@ -332,9 +220,10 @@ section {
   .polaroid { width: 150px; }
   .polaroid img { height: 160px; }
   .pol-1, .pol-2, .pol-3, .pol-4 { margin-top: 0; }
+
+  .service-card img { height: 200px; }
 }
 
-/* Force 2-column grid for polaroids + services on small phones */
 @media (max-width: 600px) {
   .clothesline-3d {
     display: grid;
@@ -350,19 +239,28 @@ section {
     transform: none !important;
     margin-top: 0 !important;
   }
-  .polaroid:hover {
-    transform: translateY(-6px) scale(1.03) !important;
-  }
+  .polaroid:hover { transform: translateY(-6px) scale(1.03) !important; }
   .polaroid img { height: 150px; }
   .clothesline-wire { display: none; }
 
+  /* --- Signature Services: horizontal sliding scroll --- */
   .services-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     gap: 14px;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
-  .service-card { flex: none; }
-  .service-card img { height: 130px; }
+  .services-grid::-webkit-scrollbar { display: none; }
+
+  .service-card {
+    flex: 0 0 78%;
+    scroll-snap-align: center;
+  }
+  .service-card img { height: 180px; }
   .service-card-body { padding: 14px; }
   .service-card-body h3 { font-size: 16px; }
   .service-card-body p { font-size: 12px; }
@@ -378,4 +276,5 @@ section {
   .hero-actions .btn { width: 100%; }
   h1 { font-size: clamp(28px, 8vw, 40px) !important; }
   .section-title { font-size: clamp(26px, 7vw, 36px) !important; }
+  .service-card img { height: 160px; }
 }

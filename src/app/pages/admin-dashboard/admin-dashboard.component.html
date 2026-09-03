@@ -1,0 +1,29 @@
+<section class="admin-dashboard">
+  <div class="admin-topbar">
+    <span class="admin-topbar-logo">Eleven <span>11</span> Admin</span>
+    <button class="btn btn-outline" (click)="onLogout()">Logout</button>
+  </div>
+
+<div class="admin-tabs">
+  <button class="admin-tab" [class.active]="activeTab === 'gallery'" (click)="activeTab = 'gallery'">Gallery</button>
+  <button class="admin-tab" [class.active]="activeTab === 'homeGallery'" (click)="activeTab = 'homeGallery'">Home Photos</button>
+  <button class="admin-tab" [class.active]="activeTab === 'services'" (click)="activeTab = 'services'">Services</button>
+  <button class="admin-tab" [class.active]="activeTab === 'bridal'" (click)="activeTab = 'bridal'">Bridal</button>
+  <button class="admin-tab" [class.active]="activeTab === 'offers'" (click)="activeTab = 'offers'">Offers</button>
+</div>
+
+
+  <div class="seed-banner" *ngIf="showSeedButton">
+  <p>First time here? Import your existing Services, Gallery, and Offers into the admin panel.</p>
+  <button class="btn btn-outline" (click)="seedData()" [disabled]="seeding">
+    {{ seeding ? 'Importing...' : 'Import Starter Content' }}
+  </button>
+</div>
+
+
+<app-admin-gallery *ngIf="activeTab === 'gallery'"></app-admin-gallery>
+<app-admin-home-gallery *ngIf="activeTab === 'homeGallery'"></app-admin-home-gallery>
+<app-admin-services *ngIf="activeTab === 'services'"></app-admin-services>
+<app-admin-bridal *ngIf="activeTab === 'bridal'"></app-admin-bridal>
+<app-admin-offers *ngIf="activeTab === 'offers'"></app-admin-offers>
+</section>

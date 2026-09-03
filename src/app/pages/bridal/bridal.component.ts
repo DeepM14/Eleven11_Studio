@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FirebaseService } from '../../core/firebase.service';
 
 interface Sparkle {
   top: string;
@@ -13,9 +14,21 @@ interface Faq {
   a: string;
 }
 
-interface LookbookImage {
+interface BridalPackage {
+  id?: string;
+  position: number;
+  name: string;
+  tag: string;
+  includes: string[];
   img: string;
+  featured: boolean;
+}
+
+interface LookbookImage {
+  id?: string;
+  position: number;
   caption: string;
+  img: string;
 }
 
 @Component({
@@ -28,16 +41,11 @@ export class BridalComponent implements OnInit, OnDestroy {
   sparkles: Sparkle[] = [];
   openFaq: number | null = 0;
 
+  packages: BridalPackage[] = [];
+  lookbookImages: LookbookImage[] = [];
+
   activeSlide = 0;
   private autoplayTimer: any;
-
-  lookbookImages: LookbookImage[] = [
-    { img: 'images/look-1.jpeg', caption: 'Bridal Glow' },
-    { img: 'images/look-2.jpeg', caption: 'Hair Artistry' },
-    { img: 'images/look-3.jpeg', caption: 'Makeup Magic' },
-    { img: 'images/look-4.jpeg', caption: 'Wedding Day' },
-    { img: 'images/look-5.jpeg', caption: 'Royal Finish' }
-  ];
 
   faqs: Faq[] = [
     { q: 'How far in advance should I book my bridal consultation?', a: 'We recommend booking 2-3 months before your wedding date, especially for weekend dates which fill up quickly.' },
@@ -47,7 +55,9 @@ export class BridalComponent implements OnInit, OnDestroy {
     { q: 'How is pricing decided?', a: 'Pricing depends on your outfit style, number of looks, venue location, and add-ons like hair extensions or jewelry styling. We share a clear quote after your consultation.' }
   ];
 
-  ngOnInit() {
+  constructor(private firebaseService: FirebaseService) {}
+
+  async ngOnInit() {
     this.sparkles = Array.from({ length: 40 }, () => ({
       top: Math.random() * 100 + '%',
       left: Math.random() * 100 + '%',
@@ -56,6 +66,8 @@ export class BridalComponent implements OnInit, OnDestroy {
       duration: (Math.random() * 2.5 + 2).toFixed(1) + 's'
     }));
 
+    await this.loadPackages();
+    await this.loadLookbook();
     this.startAutoplay();
   }
 
@@ -63,11 +75,33 @@ export class BridalComponent implements OnInit, OnDestroy {
     clearInterval(this.autoplayTimer);
   }
 
+  async loadPackages() {
+    try {
+      const raw = await this.firebaseService.getAll('bridalPackages') as BridalPackage[];
+      this.packages = raw.sort((a, b) => a.position - b.position);
+    } catch (err) {
+      console.error('Failed to load bridal packages:', err);
+      this.packages = [];
+    }
+  }
+
+  async loadLookbook() {
+    try {
+      const raw = await this.firebaseService.getAll('bridalLookbook') as LookbookImage[];
+      this.lookbookImages = raw.sort((a, b) => a.position - b.position);
+    } catch (err) {
+      console.error('Failed to load bridal lookbook:', err);
+      this.lookbookImages = [];
+    }
+  }
+
   toggleFaq(i: number) {
     this.openFaq = this.openFaq === i ? null : i;
   }
 
   startAutoplay() {
+    clearInterval(this.autoplayTimer);
+    if (this.lookbookImages.length === 0) return;
     this.autoplayTimer = setInterval(() => this.nextSlide(), 3000);
   }
 
@@ -80,10 +114,12 @@ export class BridalComponent implements OnInit, OnDestroy {
   }
 
   nextSlide() {
+    if (this.lookbookImages.length === 0) return;
     this.activeSlide = (this.activeSlide + 1) % this.lookbookImages.length;
   }
 
   prevSlide() {
+    if (this.lookbookImages.length === 0) return;
     this.activeSlide = (this.activeSlide - 1 + this.lookbookImages.length) % this.lookbookImages.length;
   }
 
@@ -93,6 +129,7 @@ export class BridalComponent implements OnInit, OnDestroy {
 
   private getOffset(i: number): number {
     const total = this.lookbookImages.length;
+    if (total === 0) return 0;
     let offset = i - this.activeSlide;
     if (offset > total / 2) offset -= total;
     if (offset < -total / 2) offset += total;

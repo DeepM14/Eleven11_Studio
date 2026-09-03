@@ -1,0 +1,179 @@
+:host { display: block; width: 100%; }
+section { display: block; width: 100%; position: relative; }
+
+/* ===== PAGE HEADER ===== */
+.page-header {
+  position: relative;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 60px;
+  overflow: hidden;
+}
+.page-header-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--black);
+}
+.sparkle-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+.sparkle {
+  position: absolute;
+  background: var(--gold-light);
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 4px 1px var(--gold);
+  animation: twinkle ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.4); }
+  50% { opacity: 0.55; transform: scale(1.2); }
+}
+.page-header-content {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+  padding: 0 24px;
+}
+.page-header-content h1 { font-size: clamp(34px, 5vw, 54px); margin: 12px 0 14px; }
+.page-header-content p { color: var(--ivory-dim); font-size: 15px; }
+
+.eyebrow.center, .section-title.center, .section-subtitle.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== OFFERS GRID ===== */
+.offers-section { padding: var(--section-pad); max-width: 1200px; margin: 0 auto; }
+
+.offers-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 26px;
+}
+
+.offer-card {
+  flex: 1 1 320px;
+  background: var(--charcoal);
+  border: 1px solid var(--gold-deep);
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.offer-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold);
+  box-shadow: 0 20px 40px rgba(217,182,91,0.15);
+}
+
+.offer-discount {
+  background: var(--gold-gradient);
+  color: var(--black);
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  padding: 16px;
+}
+
+.offer-body { padding: 26px; }
+.offer-body h3 { font-size: 20px; margin-bottom: 8px; }
+.offer-body p { color: var(--ivory-dim); font-size: 14px; margin-bottom: 18px; }
+
+.offer-code-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  border: 1px dashed var(--gold);
+  padding: 10px 14px;
+  background: var(--black);
+}
+
+.offer-code {
+  flex: 1;
+  font-family: var(--font-nav);
+  letter-spacing: 2px;
+  color: var(--gold-light);
+  font-size: 15px;
+}
+
+.copy-btn {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--font-nav);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+.copy-btn:hover { background: var(--gold); color: var(--black); }
+
+.offer-validity {
+  font-size: 12px;
+  color: var(--ivory-dim);
+  opacity: 0.7;
+  margin-bottom: 18px !important;
+}
+
+.btn-block { width: 100%; justify-content: center; }
+
+/* ===== HOW TO REDEEM ===== */
+.redeem-strip {
+  background: var(--charcoal);
+  border-top: 1px solid rgba(217,182,91,0.14);
+  border-bottom: 1px solid rgba(217,182,91,0.14);
+  padding: var(--section-pad);
+}
+
+.redeem-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+
+.redeem-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 26px;
+}
+
+.redeem-step {
+  flex: 1 1 200px;
+  max-width: 240px;
+}
+
+.redeem-step .step-num {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-family: var(--font-display);
+  margin: 0 auto 10px;
+}
+
+.redeem-step p { color: var(--ivory-dim); font-size: 14px; }
+
+/* ===== CTA ===== */
+.offers-cta { text-align: center; padding: var(--section-pad); max-width: 1200px; margin: 0 auto; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .section, .page-header { padding-left: 16px; padding-right: 16px; }
+  .btn { width: 100%; justify-content: center; }
+  h1 { font-size: clamp(28px, 8vw, 40px) !important; }
+  .section-title { font-size: clamp(26px, 7vw, 36px) !important; }
+}

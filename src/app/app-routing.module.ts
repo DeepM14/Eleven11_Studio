@@ -7,6 +7,10 @@ import { ServicesComponent } from './pages/services/services.component';
 import { BridalComponent } from './pages/bridal/bridal.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { BookingComponent } from './pages/booking/booking.component';
+import { OffersComponent } from './pages/offers/offers.component';
+import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { authGuard } from './core/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +20,9 @@ const routes: Routes = [
   { path: 'gallery', component: GalleryComponent },
   { path: 'contact', redirectTo: 'booking', pathMatch: 'full' },
   { path: 'booking', component: BookingComponent },
+  { path: 'offers', component: OffersComponent },
+  { path: 'admin-login', component: AdminLoginComponent },
+  { path: 'admin', component: AdminDashboardComponent, canActivate: [authGuard] },
   { path: '**', redirectTo: '' }
 ];
 

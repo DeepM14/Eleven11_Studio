@@ -14,6 +14,7 @@
   </div>
 </section>
 
+
 <!-- ===== PACKAGES ===== -->
 <section class="section packages-section">
   <span class="eyebrow center">Bridal Packages</span>
@@ -21,50 +22,18 @@
   <p class="section-subtitle center">Every package is customized after your consultation — final pricing depends on your outfit, venue, and requirements.</p>
 
   <div class="packages-grid">
-    <div class="package-card">
-      <img src="images/pkg-classic.jpeg" alt="Classic Bridal Package">
+    <div class="package-card" [class.featured]="pkg.featured" *ngFor="let pkg of packages">
+      <span class="featured-tag" *ngIf="pkg.featured">Most Loved</span>
+      <img [src]="pkg.img" [alt]="pkg.name">
       <div class="package-body">
-        <h3>Classic Bridal</h3>
-        <p class="package-tag">Simple, elegant, effortless</p>
+        <h3>{{ pkg.name }}</h3>
+        <p class="package-tag">{{ pkg.tag }}</p>
         <div class="package-includes">
-          <div class="include-item"><span class="include-icon">✦</span> Bridal Hairstyling</div>
-          <div class="include-item"><span class="include-icon">✦</span> HD Makeup</div>
-          <div class="include-item"><span class="include-icon">✦</span> Draping Assistance</div>
-          <div class="include-item"><span class="include-icon">✦</span> 1 Trial Session</div>
+          <div class="include-item" *ngFor="let inc of pkg.includes">
+            <span class="include-icon">✦</span> {{ inc }}
+          </div>
         </div>
-        <a routerLink="/booking" class="btn btn-outline">Get Custom Quote</a>
-      </div>
-    </div>
-
-    <div class="package-card featured">
-      <span class="featured-tag">Most Loved</span>
-      <img src="images/pkg-royal.jpeg" alt="Royal Bridal Package">
-      <div class="package-body">
-        <h3>Royal Bridal</h3>
-        <p class="package-tag">Our most complete bridal experience</p>
-        <div class="package-includes">
-          <div class="include-item"><span class="include-icon">✦</span> Airbrush HD Makeup</div>
-          <div class="include-item"><span class="include-icon">✦</span> Premium Hair & Extensions</div>
-          <div class="include-item"><span class="include-icon">✦</span> Draping + Jewelry Styling</div>
-          <div class="include-item"><span class="include-icon">✦</span> 2 Trial Sessions</div>
-          <div class="include-item"><span class="include-icon">✦</span> Dedicated Artist On Wedding Day</div>
-        </div>
-        <a routerLink="/booking" class="btn btn-primary">Get Custom Quote</a>
-      </div>
-    </div>
-
-    <div class="package-card">
-      <img src="images/pkg-premium.jpeg" alt="Premium Bridal Package">
-      <div class="package-body">
-        <h3>Premium Bridal</h3>
-        <p class="package-tag">Balanced glam and comfort</p>
-        <div class="package-includes">
-          <div class="include-item"><span class="include-icon">✦</span> HD + Airbrush Makeup</div>
-          <div class="include-item"><span class="include-icon">✦</span> Advanced Hairstyling</div>
-          <div class="include-item"><span class="include-icon">✦</span> Draping Assistance</div>
-          <div class="include-item"><span class="include-icon">✦</span> 2 Trial Sessions</div>
-        </div>
-        <a routerLink="/booking" class="btn btn-outline">Get Custom Quote</a>
+        <a routerLink="/booking" [class]="pkg.featured ? 'btn btn-primary' : 'btn btn-outline'">Get Custom Quote</a>
       </div>
     </div>
   </div>
@@ -75,7 +44,7 @@
   <span class="eyebrow center">The Lookbook</span>
   <h2 class="section-title center">Bridal <span class="gold-text">Looks We've Created</span></h2>
 
-  <div class="coverflow-stage" (mouseenter)="pauseAutoplay()" (mouseleave)="resumeAutoplay()">
+  <div class="coverflow-stage" (mouseenter)="pauseAutoplay()" (mouseleave)="resumeAutoplay()" *ngIf="lookbookImages.length > 0">
     <div class="sparkle-field">
       <span class="sparkle" *ngFor="let s of sparkles" [style.top]="s.top" [style.left]="s.left" [style.width]="s.size" [style.height]="s.size" [style.animationDelay]="s.delay" [style.animationDuration]="s.duration"></span>
     </div>
@@ -106,67 +75,23 @@
     </div>
   </div>
 
+  <p class="empty-msg" *ngIf="lookbookImages.length === 0">No lookbook photos added yet.</p>
+
   <div class="hanging-cta">
     <a routerLink="/gallery" class="btn btn-outline">View Full Gallery</a>
   </div>
 </section>
 
-<!-- ===== INCLUDED IN EVERY PACKAGE ===== -->
-<section class="whats-included">
-  <div class="included-inner">
-    <span class="eyebrow center">The Standard</span>
-    <h2 class="section-title center">Included In <span class="gold-text">Every Package</span></h2>
-
-    <div class="included-grid">
-      <div class="included-card">
-        <div class="included-icon">💄</div>
-        <h3>Premium Products</h3>
-        <p>Only trusted, long-wear cosmetic brands used.</p>
-      </div>
-      <div class="included-card">
-        <div class="included-icon">🕐</div>
-        <h3>On-Time Guarantee</h3>
-        <p>Your artist arrives with buffer time, always.</p>
-      </div>
-      <div class="included-card">
-        <div class="included-icon">✨</div>
-        <h3>Touch-Up Kit</h3>
-        <p>A mini touch-up kit left with you for the day.</p>
-      </div>
-      <div class="included-card">
-        <div class="included-icon">📋</div>
-        <h3>Look Planning</h3>
-        <p>We plan your look around your outfit in advance.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ===== PROCESS ===== -->
-<section class="process-section">
-  <div class="process-inner">
-    <span class="eyebrow center">How It Works</span>
-    <h2 class="section-title center">Your Journey With <span class="gold-text">Us</span></h2>
+<div class="arrow-flow">
+  <span class="arrow-step">Consultation</span>
+  <span class="arrow-icon">&#8250;</span>
+  <span class="arrow-step">Trial Session</span>
+  <span class="arrow-icon">&#8250;</span>
+  <span class="arrow-step">Wedding Day</span>
+</div>
 
-    <div class="process-steps">
-      <div class="process-step">
-        <div class="step-number">01</div>
-        <h3>Consultation</h3>
-        <p>We understand your outfit, skin tone, and vision for the day.</p>
-      </div>
-      <div class="process-step">
-        <div class="step-number">02</div>
-        <h3>Trial Session</h3>
-        <p>A full run-through so there are no surprises on the big day.</p>
-      </div>
-      <div class="process-step">
-        <div class="step-number">03</div>
-        <h3>Wedding Day</h3>
-        <p>Your dedicated artist arrives early to perfect every detail.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ===== TESTIMONIALS ===== -->
 <section class="section testimonials-section">

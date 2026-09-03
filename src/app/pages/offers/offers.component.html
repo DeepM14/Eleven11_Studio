@@ -1,0 +1,67 @@
+<!-- ===== PAGE HEADER ===== -->
+<section class="page-header">
+  <div class="page-header-overlay"></div>
+  <div class="page-pattern"></div>
+  <div class="page-glow"></div>
+  <div class="sparkle-field">
+    <span class="sparkle" *ngFor="let s of sparkles" [style.top]="s.top" [style.left]="s.left" [style.width]="s.size" [style.height]="s.size" [style.animationDelay]="s.delay" [style.animationDuration]="s.duration"></span>
+  </div>
+  <div class="page-header-content">
+    <span class="eyebrow">Limited Time</span>
+    <h1>Current <span class="gold-text">Offers</span></h1>
+    <p>Save on your next visit — new offers added regularly.</p>
+  </div>
+</section>
+
+<!-- ===== OFFERS GRID ===== -->
+<section class="section offers-section">
+  <div class="offers-grid">
+    <div class="offer-card" *ngFor="let offer of offers">
+      <div class="offer-discount">{{ offer.discount }}</div>
+      <div class="offer-body">
+        <h3>{{ offer.title }}</h3>
+        <p>{{ offer.description }}</p>
+
+        <div class="offer-code-row" *ngIf="offer.code">
+  <span class="offer-code">{{ offer.code }}</span>
+  <button class="copy-btn" (click)="copyCode(offer.code, $event)">
+    {{ copiedCode === offer.code ? 'Copied!' : 'Copy' }}
+  </button>
+</div>
+
+        <p class="offer-validity">Valid until {{ offer.validUntil }}</p>
+        <a [routerLink]="['/booking']" [queryParams]="{ promo: offer.code }" class="btn btn-primary btn-block">Book & Redeem</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW TO REDEEM ===== -->
+<section class="redeem-strip">
+  <div class="redeem-inner">
+    <span class="eyebrow center">Simple Process</span>
+    <h2 class="section-title center">How To <span class="gold-text">Redeem</span></h2>
+
+    <div class="redeem-steps">
+      <div class="redeem-step">
+        <div class="step-num">1</div>
+        <p>Copy your promo code above</p>
+      </div>
+      <div class="redeem-step">
+        <div class="step-num">2</div>
+        <p>Book your appointment</p>
+      </div>
+      <div class="redeem-step">
+        <div class="step-num">3</div>
+        <p>Mention the code in your notes or to our team</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="section offers-cta">
+  <h2 class="section-title center">Don't Miss <span class="gold-text">Out</span></h2>
+  <p class="section-subtitle center">Offers are limited and change regularly — book now to lock in your discount.</p>
+  <a routerLink="/booking" class="btn btn-primary">Book Appointment</a>
+</section>

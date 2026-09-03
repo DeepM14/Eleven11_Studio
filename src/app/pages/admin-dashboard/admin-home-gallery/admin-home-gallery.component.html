@@ -1,0 +1,54 @@
+
+<div class="admin-section">
+  <h2 class="section-title">Manage <span class="gold-text">Home Page Gallery</span></h2>
+  <p class="section-subtitle">These 4 photos appear in the hanging gallery on your Home page. Separate from the main Gallery page.</p>
+
+  <div class="admin-form-card">
+    <h3>Add / Replace Photo</h3>
+
+    <div class="form-group">
+      <label>Position</label>
+      <select [(ngModel)]="newItem.position">
+        <option [value]="1">1</option>
+        <option [value]="2">2</option>
+        <option [value]="3">3</option>
+        <option [value]="4">4</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Caption</label>
+      <input type="text" [(ngModel)]="newItem.caption" placeholder="e.g. Bridal Glow">
+    </div>
+
+    <div class="form-group">
+      <label>Photo</label>
+      <input type="file" accept="image/*" (change)="onFileSelected($event)">
+    </div>
+
+    <div class="upload-preview" *ngIf="previewUrl">
+      <img [src]="previewUrl" alt="Preview">
+    </div>
+
+    <p class="upload-status" *ngIf="uploading">Uploading...</p>
+    <p class="upload-error" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+    <button class="btn btn-primary" (click)="savePhoto()" [disabled]="uploading">
+      {{ uploading ? 'Saving...' : 'Save Photo' }}
+    </button>
+  </div>
+
+  <div class="admin-list">
+    <h3>Current Home Gallery Photos</h3>
+    <div class="admin-photo-grid">
+      <div class="admin-photo-card" *ngFor="let item of items">
+        <img [src]="item.img" [alt]="item.caption">
+        <div class="admin-photo-body">
+          <strong>Position {{ item.position }}: {{ item.caption }}</strong>
+          <button class="btn-delete" (click)="deletePhoto(item.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+    <p class="empty-msg" *ngIf="items.length === 0">No photos yet — add up to 4 above.</p>
+  </div>
+</div>

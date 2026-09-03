@@ -89,10 +89,15 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label>Additional Notes</label>
-          <textarea name="notes" rows="3" [(ngModel)]="booking.notes" placeholder="Any specific requirements or requests..."></textarea>
-        </div>
+       <div class="form-group">
+  <label>Promo Code (optional)</label>
+  <input type="text" name="promoCode" [(ngModel)]="booking.promoCode" placeholder="e.g. WELCOME20">
+</div>
+
+<div class="form-group">
+  <label>Additional Notes</label>
+  <textarea name="notes" rows="3" [(ngModel)]="booking.notes" placeholder="Any specific requirements or requests..."></textarea>
+</div>
 
         <button type="submit" class="btn btn-primary btn-block" [disabled]="!bookingForm.valid">
           Confirm & Send via WhatsApp

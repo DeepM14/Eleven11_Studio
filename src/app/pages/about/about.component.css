@@ -175,6 +175,16 @@ section { display: block; width: 100%; position: relative; }
 @media (max-width: 900px) {
   .story-image img { height: 320px; }
   .stat h3 { font-size: 30px; }
+
+    .values-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .value-card { flex: none; padding: 20px 14px; }
+  .value-card h3 { font-size: 16px; }
+  .value-card p { font-size: 12px; }
+  .value-icon { font-size: 18px; margin-bottom: 10px; }
 }
 @media (max-width: 480px) {
   .section, .page-header { padding-left: 16px; padding-right: 16px; }

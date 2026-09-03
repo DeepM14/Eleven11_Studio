@@ -128,7 +128,13 @@ section { display: block; width: 100%; position: relative; }
 }
 
 /* ===== BRIDAL LOOKBOOK ===== */
-.lookbook-section { text-align: center; padding: var(--section-pad); max-width: 1200px; margin: 0 auto; overflow: visible; }
+.lookbook-section {
+  text-align: center;
+  padding: var(--section-pad);
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
 
 .hanging-cta { margin-top: 36px; position: relative; z-index: 3; }
 
@@ -225,36 +231,6 @@ section { display: block; width: 100%; position: relative; }
 }
 .dot.active { background: var(--gold); width: 22px; border-radius: 4px; }
 
-/* ===== INCLUDED IN EVERY PACKAGE ===== */
-.whats-included {
-  background: var(--charcoal);
-  border-top: 1px solid rgba(217,182,91,0.14);
-  border-bottom: 1px solid rgba(217,182,91,0.14);
-  padding: var(--section-pad);
-}
-
-.included-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
-
-.included-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 22px;
-  margin-top: 30px;
-}
-
-.included-card {
-  flex: 1 1 220px;
-  max-width: 260px;
-  padding: 24px;
-  border: 1px solid rgba(217,182,91,0.12);
-  transition: border-color 0.35s ease, transform 0.35s ease;
-}
-.included-card:hover { border-color: var(--gold); transform: translateY(-6px); }
-
-.included-icon { font-size: 30px; margin-bottom: 12px; }
-.included-card h3 { font-size: 18px; margin-bottom: 6px; }
-.included-card p { color: var(--ivory-dim); font-size: 13px; }
 
 /* ===== PROCESS ===== */
 .process-section {
@@ -263,25 +239,60 @@ section { display: block; width: 100%; position: relative; }
   border-bottom: 1px solid rgba(217,182,91,0.14);
   padding: var(--section-pad);
 }
+.arrow-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  margin-top: 36px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 10px;
+}
+.arrow-flow::-webkit-scrollbar { display: none; }
+
+.arrow-step {
+  font-family: var(--font-nav);
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ivory);
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+.arrow-step:hover { color: var(--gold-light); }
+
+.arrow-icon {
+  color: var(--gold);
+  font-size: 13px;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .arrow-step { font-size: 11px; letter-spacing: 1px; }
+  .arrow-icon { font-size: 11px; }
+}
+
 
 .process-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
 
-.process-steps {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 30px;
-}
 
-.process-step { flex: 1 1 240px; max-width: 280px; }
+.timeline-step h3 { font-size: 19px; margin-bottom: 8px; }
+.timeline-step p { color: var(--ivory-dim); font-size: 13px; }
 
-.step-number {
-  font-family: var(--font-display);
-  font-size: 44px;
-  color: var(--gold);
-  opacity: 0.5;
-  margin-bottom: 10px;
+
+
+@media (max-width: 700px) {
+  .process-timeline { flex-direction: column; align-items: center; gap: 0; }
+  .timeline-connector {
+    width: 1px;
+    height: 30px;
+    flex: none;
+    margin: 0;
+  }
+  .timeline-step { margin-bottom: 6px; }
 }
 
 .process-step h3 { font-size: 20px; margin-bottom: 8px; }
@@ -393,6 +404,42 @@ section { display: block; width: 100%; position: relative; }
   .included-card { flex: none; max-width: none; padding: 16px; }
   .included-icon { font-size: 24px; }
   .included-card h3 { font-size: 15px; }
+    .packages-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 16px;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    justify-content: flex-start;
+  }
+  .packages-grid::-webkit-scrollbar { display: none; }
+  .package-card {
+    flex: 0 0 82%;
+    max-width: none;
+    scroll-snap-align: center;
+  }
+  .package-card.featured { transform: none; }
+  .package-card.featured:hover { transform: translateY(-8px); }
+
+    .testimonials-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 16px;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .testimonials-grid::-webkit-scrollbar { display: none; }
+  .testimonial-card {
+    flex: 0 0 82%;
+    scroll-snap-align: center;
+  }
+   
 }
 
 @media (max-width: 700px) {

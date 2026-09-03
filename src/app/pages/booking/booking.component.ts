@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 interface Sparkle {
   top: string;
@@ -30,15 +31,16 @@ export class BookingComponent implements OnInit {
   // >>> REPLACE WITH YOUR REAL SALON WHATSAPP NUMBER (country code, no + or spaces) <
   private readonly SALON_WHATSAPP_NUMBER = '919500644702';
 
-  booking = {
+    booking = {
     name: '',
     phone: '',
     service: '',
     date: '',
     time: '',
+    promoCode: '',
     notes: ''
   };
-    constructor(private sanitizer: DomSanitizer) {
+    constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute) {
     // Replace with your own "Embed a map" src from Google Maps (Share -> Embed a map)
     const rawUrl = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d80.2707!3d13.0827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA0JzU3LjciTiA4MMKwMTYnMTQuNSJF!5e0!3m2!1sen!2sin!4v1234567890';
     this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(rawUrl);
@@ -69,6 +71,12 @@ export class BookingComponent implements OnInit {
     // Prevent selecting past dates in the date picker
     const today = new Date();
     this.minDate = today.toISOString().split('T')[0];
+
+    this.route.queryParams.subscribe(params => {
+  if (params['promo']) {
+    this.booking.promoCode = params['promo'];
+  }
+});
   }
 
   onBook() {
@@ -81,6 +89,7 @@ export class BookingComponent implements OnInit {
       `*Service:* ${this.booking.service}%0A` +
       `*Preferred Date:* ${formattedDate}%0A` +
       `*Preferred Time:* ${this.booking.time}%0A` +
+      `*Promo Code:* ${this.booking.promoCode || 'None'}%0A` +
       `*Notes:* ${this.booking.notes || 'None'}%0A%0A` +
       `Please confirm my slot. Thank you!`;
 
@@ -92,7 +101,7 @@ export class BookingComponent implements OnInit {
   }
 
   resetForm() {
-    this.booking = { name: '', phone: '', service: '', date: '', time: '', notes: '' };
+    this.booking = { name: '', phone: '', service: '', date: '', time: '',promoCode:'', notes: '' };
     this.submitted = false;
   }
 

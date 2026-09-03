@@ -1,0 +1,77 @@
+<div class="admin-section">
+  <h2 class="section-title">Manage <span class="gold-text">Services</span></h2>
+  <p class="section-subtitle">Add, edit, or remove services shown on your Services page.</p>
+
+  <!-- Add form -->
+  <div class="admin-form-card">
+    <h3>{{ editingId ? 'Edit Service' : 'Add New Service' }}</h3>
+
+    <div class="form-group">
+      <label>Category</label>
+      <select [(ngModel)]="newItem.category">
+        <option value="Hair Studio">Hair Studio</option>
+        <option value="Makeup Artistry">Makeup Artistry</option>
+        <option value="Spa & Wellness">Spa & Wellness</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Service Name</label>
+      <input type="text" [(ngModel)]="newItem.name" placeholder="e.g. Haircut & Styling">
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea rows="2" [(ngModel)]="newItem.desc" placeholder="Short description"></textarea>
+    </div>
+
+   <div class="form-group">
+  <label>Photo</label>
+  <input type="file" accept="image/*" (change)="onFileSelected($event)">
+</div>
+
+<div class="upload-preview" *ngIf="previewUrl">
+  <img [src]="previewUrl" alt="Preview">
+</div>
+<div class="upload-preview" *ngIf="!previewUrl && newItem.img">
+  <img [src]="newItem.img" alt="Current photo">
+</div>
+
+<p class="upload-status" *ngIf="uploading">Uploading photo...</p>
+
+    <p class="upload-error" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" (click)="saveItem()">
+        {{ editingId ? 'Update Service' : 'Add Service' }}
+      </button>
+      <button class="btn btn-outline" *ngIf="editingId" (click)="cancelEdit()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Existing services -->
+  <div class="admin-list">
+    <h3>Current Services ({{ items.length }})</h3>
+
+    <p class="empty-msg" *ngIf="!loading && items.length === 0">No services yet — add your first one above.</p>
+    <p class="empty-msg" *ngIf="loading">Loading...</p>
+
+    <div class="admin-category-block" *ngFor="let cat of categoryNames">
+  <h4 class="admin-category-title">{{ cat }}</h4>
+  <div class="admin-table">
+    <div class="admin-row" *ngFor="let item of getByCategory(cat)">
+      <img [src]="item.img" [alt]="item.name" class="admin-row-img">
+      <div class="admin-row-body">
+        <strong>{{ item.name }}</strong>
+        <p>{{ item.desc }}</p>
+      </div>
+      <div class="admin-row-actions">
+        <button class="btn-edit" (click)="editItem(item)">Edit</button>
+        <button class="btn-delete" (click)="deleteItem(item.id)">Delete</button>
+      </div>
+    </div>
+    <p class="empty-msg" *ngIf="getByCategory(cat).length === 0">No items in this category yet.</p>
+  </div>
+</div>
+  </div>
+</div>

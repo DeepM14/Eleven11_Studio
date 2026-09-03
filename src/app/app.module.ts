@@ -16,6 +16,14 @@ import { BookingComponent } from './pages/booking/booking.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { FloatingButtonsComponent } from './shared/floating-buttons/floating-buttons.component';
+import { OffersComponent } from './pages/offers/offers.component';
+import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { AdminGalleryComponent } from './pages/admin-dashboard/admin-gallery/admin-gallery.component';
+import { AdminServicesComponent } from './pages/admin-dashboard/admin-services/admin-services.component';
+import { AdminOffersComponent } from './pages/admin-dashboard/admin-offers/admin-offers.component';
+import { AdminHomeGalleryComponent } from './pages/admin-dashboard/admin-home-gallery/admin-home-gallery.component';
+import { AdminBridalComponent } from './pages/admin-dashboard/admin-bridal/admin-bridal.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +37,15 @@ import { FloatingButtonsComponent } from './shared/floating-buttons/floating-but
     BookingComponent,
     NavbarComponent,
     FooterComponent,
-    FloatingButtonsComponent
+    FloatingButtonsComponent,
+    OffersComponent,
+    AdminLoginComponent,
+    AdminDashboardComponent,
+    AdminGalleryComponent,
+    AdminServicesComponent,
+    AdminOffersComponent,
+    AdminHomeGalleryComponent,
+    AdminBridalComponent
   ],
   imports: [
     BrowserModule,

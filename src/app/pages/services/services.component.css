@@ -86,8 +86,8 @@ section { display: block; width: 100%; position: relative; }
 
 /* ===== SERVICE GRID ===== */
 .services-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 26px;
   animation: fadeSlide 0.5s ease;
 }
@@ -98,7 +98,7 @@ section { display: block; width: 100%; position: relative; }
 }
 
 .service-card-v2 {
-  flex: 1 1 300px;
+  
   background: var(--charcoal);
   border: 1px solid rgba(217,182,91,0.15);
   overflow: hidden;
