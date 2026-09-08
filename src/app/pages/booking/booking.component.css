@@ -326,3 +326,12 @@ form button[disabled] { opacity: 0.4; cursor: not-allowed; }
   h1 { font-size: clamp(28px, 8vw, 40px) !important; }
   .section-title { font-size: clamp(26px, 7vw, 36px) !important; }
 }
+.info-card p a {
+  color: var(--ivory-dim);
+  text-decoration: underline;
+  text-decoration-color: rgba(217,182,91,0.4);
+  transition: color 0.3s ease;
+}
+.info-card p a:hover {
+  color: var(--gold);
+}

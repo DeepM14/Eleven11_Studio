@@ -78,3 +78,7 @@
   .charm-coin { width: 48px; height: 48px; }
   .coin-back { font-size: 8px; }
 }
+
+.insta-coin .coin-front {
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
